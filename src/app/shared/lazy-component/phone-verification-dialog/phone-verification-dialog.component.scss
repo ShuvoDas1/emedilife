@@ -1,0 +1,174 @@
+@import "src/theme/variables";
+@import "src/theme/_base";
+
+#verification {
+  width: 100%;
+  height: auto;
+  //display: grid;
+  //place-items: center;
+}
+
+.container-view {
+  width: 95%;
+  max-width: 1080px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  padding: 33px 16px;
+  // margin-top: 30px;
+  // overflow: scroll;
+}
+
+.top {
+  width: 100%;
+  text-align: end;
+  display: flex;
+
+  .img__wrapper {
+    flex: 1;
+    text-align: center;
+
+    img {
+      width: 220px;
+    }
+  }
+
+  .close__button {
+    width: 50px;
+  }
+}
+
+.head {
+  width: 100%;
+  margin: 36px 0;
+  text-align: center;
+
+  h2 {
+    font-family: $font-en-primary;
+    color: #474747;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  p {
+    font-family: $font-en-primary;
+    color: #AAAAAA;
+    font-size: 18px;
+    padding: 8px 0;
+  }
+}
+
+@media(max-width:500px) {
+  .container-view {
+    padding: 40px 16px;
+  }
+
+  .head {
+    h2 {
+      font-size: 25px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+}
+
+
+.bottom {
+  width: 100%;
+  margin: 0 0 36px 0;
+  text-align: center;
+
+  h4 {
+    font-family: $font-en-primary;
+    color: #EA8F90;
+    font-size: 20px;
+    font-weight: 600;
+    padding-bottom: 6px;
+  }
+
+  p {
+    font-family: $font-en-primary;
+    color: #494949;
+    font-weight: 500;
+    font-size: 16px;
+    //padding: 6px 0;
+  }
+
+}
+
+
+
+.varification__form {
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.code-area {
+  width: 270px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .verify-input-field {
+    flex: 1;
+    width: 100%;
+    max-width: 48px;
+    // 
+
+    input {
+      text-align: center !important;
+      // border: 1px solid $primary_color;
+
+    }
+  }
+}
+
+
+.action {
+  text-align: center;
+  margin-top: 5px;
+
+  button {
+    background: $color-primary;
+    color: #FFFFFF;
+    font-family: $font-en-primary;
+    font-weight: 600;
+    padding: 3px 50px;
+    border-radius: 30px;
+  }
+}
+
+.verification-timing-area {
+  display: block;
+  text-align: center;
+}
+
+.verification-timing-area h3 {
+  color: #ff4b77;
+  font-family: $font-en-primary;
+  font-style: normal;
+  display: block;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  text-align: center;
+}
+
+.verification-timing-area h3 span {
+  margin-right: 8px;
+  font-size: 23px;
+  display: inline-block;
+  margin-top: 3px;
+}
+
+@media only screen and (max-width: 599px) {
+  .code-area {
+    width: 100%;
+
+    .verify-input-field {
+      max-width: 45px;
+    }
+  }
+}

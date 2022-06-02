@@ -1,0 +1,46 @@
+@import "../../../../../theme/exports/table-one";
+
+.header {
+  h2 {
+    text-align: center;
+    font-family: $font-en-primary;
+  }
+}
+
+.pagination-container {
+  text-align: center;
+}
+
+.unpaid {
+  text-transform: uppercase;
+  color: #ff6e7b;
+}
+
+.italic {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.paid {
+
+  text-transform: uppercase;
+  color: #01ca75;
+}
+
+.cancel {
+  color: #f01621;
+}
+
+.processing {
+  color: rgb(21, 97, 21);
+}
+
+.confirm {
+  color: #00c14c;
+}
+
+.delivered,
+.refund,
+.shipping {
+  color: #00c14c;
+}

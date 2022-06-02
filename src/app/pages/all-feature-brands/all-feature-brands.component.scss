@@ -1,0 +1,44 @@
+@import "src/theme/variables";
+@import "src/theme/_base";
+
+
+.section-category {
+  padding-top: 40px;
+}
+
+.section-md {
+  width: 100%;
+  max-width: $theme-container-width;
+  margin: 0 auto;
+}
+
+.container {
+  padding: 20px 0px;
+}
+
+.container-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 20px;
+  column-gap: 20px;
+  padding: 20px 0px;
+
+  // @media(max-width:$small_device) {
+  //   grid-template-columns: repeat(5, 1fr);
+  // }
+}
+
+
+.pagination-container {
+  // width: 1440px;
+  margin: 36px auto;
+  text-align: center;
+}
+
+// @media only screen and (max-width: 599px) {
+//   .container-grid {
+//     display: grid;
+//     grid-template-columns: repeat(3, 1fr);
+//     grid-gap: 10px;
+//   }
+// }

@@ -1,0 +1,39 @@
+<!--<div class="nav">-->
+<!--  <app-breadcrumb-soft></app-breadcrumb-soft>-->
+<!--</div>-->
+
+<div style="position: relative">
+  <mat-spinner *ngIf="isLoading"
+               style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; margin: auto"
+  ></mat-spinner>
+
+  <div class="header-dialog">
+    <h1 mat-dialog-title>District</h1>
+  </div>
+
+  <form [formGroup]="dataForm"
+        (ngSubmit)="onSubmit()"
+        autocomplete="off"
+        #templateForm="ngForm"
+        fxLayout="column" fxLayoutAlign="space-around center">
+    <mat-form-field appearance="outline">
+      <mat-label>District Name</mat-label>
+      <input formControlName="district" matInput placeholder="Enter district name" required>
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>District Name in Bangle</mat-label>
+      <input formControlName="districtbn" matInput placeholder="Enter district name in bangle" >
+    </mat-form-field>
+
+
+    <button mat-raised-button color="primary" type="submit">{{ district ? 'Edit district' : 'Add district' }}</button>
+  </form>
+</div>
+
+
+<!-- LOADING TEMPLATE -->
+<ngx-spinner style="width: 100vw; height: 100vh" bdColor="rgba(0,0,0,0.25)" size="medium" color="#fff"
+             type="ball-clip-rotate" [fullScreen]="true"><p style="color: white"> Loading... </p></ngx-spinner>
+

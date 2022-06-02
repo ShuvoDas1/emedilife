@@ -1,0 +1,178 @@
+<!----upload-prescription-area-->
+<div class="upload-prescription-area">
+  <div class="container">
+    <!---upload-prescription-area-main-->
+    <div class="upload-prescription-main">
+      <!---upload-prescription-left-->
+      <div class="upload-prescription-left">
+        <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+          <!---left-top-->
+          <div class="left-top-area">
+            <!---prescription-title-->
+            <div class="prescription-title">
+              <h3>Upload Prescription</h3>
+              <p>Please attach a Prescription to proceed</p>
+            </div>
+            <!--form-input-area--->
+            <div class="form-input-area">
+              <!--name-->
+              <div class="name">
+                <mat-form-field appearance="outline" class="form-field px-1">
+                  <mat-label>Full Name</mat-label>
+                  <input formControlName="name" matInput placeholder="Full Name" required>
+                  <mat-icon matSuffix>person</mat-icon>
+                  <mat-error>This field is required</mat-error>
+                </mat-form-field>
+              </div>
+
+              <!-- District Area -->
+
+              <div class="district__area__wrapper">
+
+                <!-- District -->
+                <div class="disctict">
+                  <mat-form-field appearance="outline" class="form-field px-1">
+                    <mat-label>District</mat-label>
+                    <mat-select formControlName="district" required (selectionChange)="onDistrictChange($event)">
+                      <mat-option [value]="district.district" *ngFor="let district of districts">{{district.district}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>room</mat-icon>
+                    <mat-error>This field is required</mat-error>
+                  </mat-form-field>
+                </div>
+
+                <!-- Area -->
+                <div class="area">
+                  <mat-form-field appearance="outline" class="form-field px-1">
+                    <mat-label>Area</mat-label>
+                    <mat-select formControlName="area" required>
+                      <mat-option [value]="area.area" *ngFor="let area of areas ">{{area.area}}</mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>where_to_vote</mat-icon>
+                    <mat-error>This field is required</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!---address-->
+              <div class="address">
+                <mat-form-field appearance="outline" class="form-field-2 px-1">
+                  <mat-label>Address</mat-label>
+                  <input formControlName="shippingAddress" matInput placeholder="Full Address" required>
+                  <mat-icon matSuffix>location_on</mat-icon>
+                  <mat-error>This field is required</mat-error>
+                </mat-form-field>
+              </div>
+
+              <!-- Note -->
+
+              <div class="upload-img-area">
+                <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+                  <ngx-dropzone-label>
+                    <div class="label">
+                      <h2>
+                        <i class="fas fa-upload" style="font-size: 32px; margin-right: 16px;"></i>
+                        Upload or Drug and Drop Prescription
+                      </h2>
+                    </div>
+                  </ngx-dropzone-label>
+
+                  <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
+                    [removable]="true" (removed)="onRemove(f)">
+                    <!--                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>-->
+                    <!--                  <ngx-dropzone-label>{{ f.type }}</ngx-dropzone-label>-->
+                  </ngx-dropzone-image-preview>
+                </div>
+                <!--END UPLOAD DROPDOWN-->
+              </div>
+
+              <div class="note">
+                <mat-form-field appearance="outline" class="form-field-2 px-1">
+                  <mat-label>Note(optional)</mat-label>
+                  <textarea formControlName="note" matInput></textarea>
+                </mat-form-field>
+              </div>
+
+            </div>
+            <!--input-area-end-->
+            <!---upload-img-area-->
+
+            <!---upload-img-area-end-->
+
+
+
+            <!---upload-bottom-->
+            <!-- <div class="uploaded-area">
+             <h3>Uploaded Prescription</h3>
+             -uploaded-info-area
+             <div class="uploaded-img-area">
+               -uploaded-img
+               <div class="uploaded-img">
+                 <img src="/assets/images/prescription/01.png" alt="">
+               </div>
+               total-uploaded-item
+               <div class="total-uploaded-item-area">
+                 <p>{{files.length}} Prescription Uploaded</p>
+               </div>
+             </div>
+          </div> -->
+
+            <!---submit-btn-->
+            <div class="submit-btn">
+              <button type="submit">Proceed</button>
+            </div>
+          </div>
+
+
+
+        </form>
+
+
+      </div>
+      <!---upload-prescription-right-->
+      <div class="upload-prescription-right">
+        <div>
+          <!---overlay-->
+          <div class="overlay">
+            <img src="/assets/images/prescription/01.png" alt="">
+          </div>
+          <!---step-area-->
+          <div class="step-area">
+            <!---step-title-->
+            <div class="step-title">
+              <h3>Order Medicine in 3 Steps</h3>
+            </div>
+            <!--step-grid-->
+            <div class="step-grid">
+              <!--step-info-->
+              <div class="step-info">
+                <h4>1</h4>
+                <p>Upload a valid prescription</p>
+              </div>
+              <!--step-info-->
+              <div class="step-info">
+                <h4>2</h4>
+                <p>Reacive a Confirmation Call</p>
+              </div>
+              <!--step-info-->
+              <div class="step-info">
+                <h4>3</h4>
+                <p>Delivery at your door step</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- LOADING TEMPLATE -->
+<ngx-spinner style="width: 100vw; height: 100vh" bdColor="rgba(0,0,0,0.25)" size="medium" color="#fff"
+  type="ball-clip-rotate" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>

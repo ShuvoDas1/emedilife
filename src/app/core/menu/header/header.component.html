@@ -1,0 +1,271 @@
+<!--[ngClass]="{'toolbar-shadow': scrollPosition > 100}"-->
+<!---header-offer-banner-->
+<div class="header-offer-banner" *ngIf="visibleAddBanner">
+  <div class="banner-container">
+    <div class="header-offer-banner-img">
+      <a [routerLink]="promoPage?.routerLink"><img [src]="promoPage?.image" alt=""></a>
+      <span (click)="bannerHide()">X</span>
+    </div>
+  </div>
+</div>
+
+<header class="header" (click)="onClickHeader()" [class.toolbar-small]="scrollPosition > 714" appOutSideClick
+  (outsideClick)="handleOutsideClick()">
+  <div class="container" [ngClass]="{'toolbar-scroll': scrollPosition > 714}">
+    <div class="logo">
+      <!--menu-bar-->
+      <div class="menu-bar no-select" (click)="onToggleSidenav()">
+        <span><i class="fa fa-bars"></i></span>
+      </div>
+      <div>
+        <a routerLink="/" style="text-decoration: none">
+          <img (click)="onNavigate()" class="logo" src="./assets/images/logo/emedilife-logo.svg" alt="Orajon">
+        </a>
+      </div>
+    </div> <!-- END LOGO -->
+
+    <div class="search" (click)="onClickSearchArea($event)">
+      <form class="search-form" #searchForm=ngForm>
+        <input #searchInput id="searchInput" class="tw" type="text" placeholder="Search in esquire..."
+          (focus)=handleFocus($event) name="searchTerm" autocomplete="off" ngModel required>
+        <div class="icon">
+          <mat-icon>search</mat-icon>
+        </div>
+        <div *ngIf="isLoading" class="sk-fading-circle">
+          <div class="sk-circle1 sk-circle"></div>
+          <div class="sk-circle2 sk-circle"></div>
+          <div class="sk-circle3 sk-circle"></div>
+          <div class="sk-circle4 sk-circle"></div>
+          <div class="sk-circle5 sk-circle"></div>
+          <div class="sk-circle6 sk-circle"></div>
+          <div class="sk-circle7 sk-circle"></div>
+          <div class="sk-circle8 sk-circle"></div>
+          <div class="sk-circle9 sk-circle"></div>
+          <div class="sk-circle10 sk-circle"></div>
+          <div class="sk-circle11 sk-circle"></div>
+          <div class="sk-circle12 sk-circle"></div>
+        </div>
+      </form>
+
+      <!-- Suggestion View -->
+      <ul id="auto-suggestion" class="auto-complete-box"
+        [ngClass]="searchProducts.length > 0 && isOpen ? 'active' : ''">
+        <li class="list-view" *ngFor="let data of searchProducts" (click)="onSelectItem(data)">
+          <img class="img-thumb"
+            [src]="data.images && data.images.length > 0 ? data.images[0] : '/assets/images/placeholder/test.png'"
+            [alt]="data?.productName">
+          <div class="desc">
+            <h3>{{data?.productName}}</h3>
+          </div>
+          <div class="price">
+            <h5>৳{{data.prices[0] | priceData: 'priceWithDiscount' | number : '': 'bn'}}</h5>
+            <p class="discount">
+              {{(data.prices[0] | priceData: 'discountPercentage') > 0 ? '(' + (data.prices[0] | priceData: 'discountPercentage') + '% OFF)' : ''}}
+            </p>
+          </div>
+        </li>
+      </ul>
+      <!--menu-->
+      <div class="menu-area" *ngIf="headerMenu">
+        <ul>
+          <li *ngFor="let menu of headerMenu"><a [routerLink]="menu.url">{{menu.title}}</a></li>
+          <li>
+            <button mat-icon-button [matMenuTriggerFor]="menuView">
+              <mat-icon style="color: #FFFFFF">more_vert</mat-icon>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+
+    </div> <!-- END SEARCH -->
+
+    <!-- <div class="action"> -->
+    <!-- <div class="icon-text delivery">-->
+    <!--        <div class="icon">-->
+    <!--          <i class="far fa-bell" style="color:#ffff; font-weight: 600;"></i>-->
+    <!--        </div>-->
+    <!--        <div class="wrap">-->
+    <!--          <a href="#">-->
+    <!--            Subscribe <br> Now-->
+    <!--          </a>-->
+    <!--        </div>-->
+    <!--      </div> -->
+
+    <!-- <div class="icon-text contact" fxHide.lt-md="true">
+      <div class="icon">
+        <i class="fas fa-upload" style="color:#ffff; font-weight: 600;"></i>
+      </div>
+      <div class="wrap">
+        <a routerLink="/upload-prescription">Upload prescription</a>
+      </div>
+    </div>
+
+    <div class="icon-text locator" fxHide.xs="true">
+      <div class="icon" routerLink="/store-locator" style="cursor: pointer">
+        <i class="fas fa-map-marked-alt" style="color:#ffff; font-weight: 600;"></i>
+      </div>
+      <div class="wrap">
+        <a href="javascript:">Get Started</a>
+      </div>
+    </div> -->
+
+    <!-- </div> -->
+    <!---header-right-area-->
+    <div class="header-right">
+
+      <!--header-right-responsive-->
+      <div class="header-right-responsive">
+        <ul class="login__card__wrapper">
+          <!-- <li><a routerLink="/upload-prescription" class="upload-pres">Upload Prescription</a></li> -->
+          <li><a (click)=onLogin()><i class="fas fa-user-circle"></i> <span>
+                {{isUserAuth ? 'My Account' : 'Log In / Sign Up'}}
+              </span></a></li>
+          <!-- <li class="card__wrapper">
+            <a (click)="cartSlideActive()"><i class="fa fa-shopping-cart"></i> <span>Cart</span></a>
+            <span class='counter'>0</span>
+          </li> -->
+
+          <mat-icon (click)="cartSlideActive()" [ngStyle]="{'color':'white'}"
+            [matBadge]="carts && carts.length > 0 ? carts.length  : null" matBadgeColor="warn"><i
+              class="fa fa-shopping-cart" style="font-size: 20px;"></i> </mat-icon>
+
+        </ul>
+      </div>
+
+      <!---header-right-->
+      <div class="header-right-main">
+        <ul>
+          <li><a (click)=onLogin()><i class="fas fa-user-circle"></i> <span>
+                {{isUserAuth ? 'My Account' : 'Log In / Sign Up'}}
+              </span></a></li>
+          <li><a (click)="cartSlideActive()"><i class="fa fa-shopping-cart"></i> <span>Cart</span>
+              <span>{{carts && carts.length > 0 ? '(' + (carts.length) + ')' : ''}}</span>
+            </a></li>
+        </ul>
+
+        <div class="upload-prescription">
+          <a routerLink="/upload-prescription">Upload Prescription</a>
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+  <mat-menu #menuView="matMenu">
+    <button mat-menu-item>
+      <span>Medishebok Service</span>
+    </button>
+    <button mat-menu-item>
+      <span>Doctor Consultany</span>
+    </button>
+  </mat-menu> <!-- END MENU ITEMS -->
+
+</header>
+
+<!---cart-slide-->
+<div class="overlay" (click)="cartSlideInactive()" [class]="cartSlide ? 'overlay-active' : 'overlay-inactive'"></div>
+<!--cart-side-bar-->
+<div class="cart-side-bar" [class]="cartSlide ? 'cart-slide-active' : 'cart-slide-inactive'">
+  <!---cart-side-bar-head-->
+  <div class="cart-side-bar-head">
+    <!--cart-head-left-->
+    <div class="cart-head-left">
+      <ul>
+        <li><a routerLink="/cart" (click)="cartSlideInactive()"><i class="fa fa-shopping-cart"></i> <span> View in
+              Cart</span></a></li>
+      </ul>
+    </div>
+    <!--cart-head-right-->
+    <div class="cart-head-right">
+      <ul>
+        <!--        <li><span><i class="fa fa-sync-alt"></i></span></li>-->
+        <li><span (click)="cartSlideInactive()"><i class="fas fa-times"></i></span></li>
+      </ul>
+    </div>
+  </div>
+  <!---cart-side-bar-body-->
+  <div class="cart-side-bar-body">
+    <!--cart-product-->
+    <div class="cart-product" *ngFor="let c of carts; let i = index;">
+      <!--cart-product-img-->
+      <div class="cart-product-img">
+        <img
+          [src]="c?.product.images && c?.product.images.length > 0? c?.product.images[0] : '/assets/images/placeholder/test.png'"
+          [alt]="c?.product?.productName">
+      </div>
+      <!---cart-text-details-->
+      <div class="cart-text-details">
+        <!--product-left-->
+        <div class="product-left">
+          <!--product-title-->
+          <div class="product-title">
+            <a href="javascript:">{{c?.product?.productName}}</a>
+          </div>
+          <!--cart-items-count-->
+          <div class="cart-items-count">
+            <!---mines-->
+            <div class="mines-btn" (click)="decrementQty(c?._id, i, c?.selectedQty)">
+              <button>-</button>
+            </div>
+            <!---cart-input-box-->
+            <div class="cart-input-box">
+              <input readonly type="text" [value]="c.selectedQty">
+            </div>
+            <!--cart-plus-->
+            <div class="plus-btn" (click)="incrementQty(c?._id, i)">
+              <button>+</button>
+            </div>
+
+          </div>
+        </div>
+        <!---product-right-->
+        <div class="product-right">
+          <!---cart-item-delete-->
+          <div class="cart-item-delete no-select" (click)="onDeleteCartItem(c?._id, c?.product?._id, c?.priceId)">
+            <span><i class="far fa-trash-alt"></i></span>
+          </div>
+          <!---product-price-->
+          <div class="product-price">
+            <h3>৳{{c | cartPrice : 'priceWithDiscount' : false | number : '': 'bn'}}</h3>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+    <!--cart-product--end-->
+
+
+  </div>
+  <!--cart-body-end-->
+  <!---cart-bottom-->
+  <div class="cart-bottom">
+    <!---subtotal-->
+    <div class="cart-subtotal">
+      <!---subtotal-title-->
+      <div class="subtotal">
+        <h3>Subtotal</h3>
+      </div>
+      <!---total-price-->
+      <div class="total-price">
+        <h3>৳{{cartSubTotal | number : '2.0-0': 'bn'}}</h3>
+      </div>
+    </div>
+    <!---checkout-btn-->
+    <div class="checkout-btn">
+      <a (click)="checkoutClick()">Checkout</a>
+    </div>
+    <span>Or</span>
+    <!---shopping-continue-->
+    <div class="continue-shop">
+      <a routerLink="/" (click)="cartSlideInactive()">Continue Shopping <i class="fa fa-arrow-right"></i></a>
+    </div>
+
+  </div>
+
+
+</div>

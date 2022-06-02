@@ -1,0 +1,9 @@
+
+<div class="product-serivces-area">
+    <div class="product-services-main">
+        <!---img-card-->
+        <div class="card-img" *ngFor='let data of productSericesArray' [id]='data?._id'>
+            <a href="#"><img [src]="data?.image" alt=""></a>
+        </div>
+    </div>
+</div>

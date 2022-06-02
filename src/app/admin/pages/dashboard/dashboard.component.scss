@@ -1,0 +1,138 @@
+@import "src/theme/variables";
+@import "src/theme/_base";
+
+.container {
+  // font-family: $font-en-primary;
+
+  //margin-top: 12px;
+
+  .header {
+    padding: 20px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    a {
+      text-align: right;
+      color: $primary_color;
+      cursor: pointer;
+    }
+  }
+
+
+  .divider {
+    padding-bottom: 60px;
+  }
+
+  .recent__transaction {
+    padding: 20px 0px;
+
+
+    .table {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      @include boxShadow();
+      // border-radius: 20px;
+      border-radius: 15px;
+      cursor: pointer;
+
+
+      th {
+        &:first-child {
+          border-top-left-radius: 15px;
+        }
+
+        &:last-child {
+          border-top-right-radius: 15px;
+        }
+      }
+
+      tr {
+        &:last-child>td:first-child {
+          border-bottom-left-radius: 15px;
+        }
+
+        &:last-child>td:last-child {
+          border-bottom-right-radius: 15px;
+        }
+      }
+
+
+      td,
+      th {
+        // border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+        background-color: white;
+
+      }
+
+      tr {
+        border-bottom: 1px solid #ddd;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+
+      th {
+        // padding: 12px 0px;
+        background-color: #CCEFEB;
+        // border-radius: 15px;
+        color: black;
+
+      }
+
+
+
+    }
+
+  }
+}
+
+
+
+
+.card-one {
+  background: rgb(34, 108, 227);
+  background: linear-gradient(90deg, rgba(34, 108, 227, 1) 0%, rgba(18, 73, 138, 1) 100%);
+}
+
+.card-two {
+  background: #7F00FF;
+  background: -webkit-linear-gradient(to bottom, #E100FF, #7F00FF);
+  background: linear-gradient(to bottom, #E100FF, #7F00FF);
+
+}
+
+.card-three {
+  background: #bc4e9c;
+  background: -webkit-linear-gradient(to bottom, #f80759, #bc4e9c);
+  background: linear-gradient(to bottom, #f80759, #bc4e9c);
+
+}
+
+.card-four {
+  background: #2b5876;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #4e4376, #2b5876);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #4e4376, #2b5876);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+
+
+// ## Custom BreakPoints
+@media only screen and (max-device-width: $max-tablet-width) {
+  .main-overview {
+    padding: 0 10px;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media only screen and (min-device-width: 1080px) and (max-device-width: 1440px) {}

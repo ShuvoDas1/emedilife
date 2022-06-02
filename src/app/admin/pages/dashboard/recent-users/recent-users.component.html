@@ -1,0 +1,87 @@
+ <!-- <div class="recent__order__wrapper">
+   <div class="title">
+     <h3>Recent Orders</h3>
+     <a>view All</a>
+   </div>
+   <mat-divider></mat-divider>
+   <div class="orders__wrapper">
+     <drag-scroll [scrollbar-hidden]=true>
+
+
+       <div drag-scroll-item>
+
+
+
+         <div routerLink="" class="item__slider">
+           <div class="item order__id">
+             <span>Order ID</span>
+             <span>#id</span>
+           </div>
+           <div class="item">
+             <span>Quantity-</span>
+             <span>৳50</span>
+           </div>
+           <div class="item">
+             <span>Order Time</span>
+             <span>Time</span>
+           </div>
+           <div class="item">
+             <span>Payment Method</span>
+             <span>Cash on Delivery</span>
+           </div>
+           <div class="item">
+             <span>Payment Status</span>
+             <span>Status</span>
+           </div>
+           <div class="item">
+             <span>Order Status</span>
+             <span>Status</span>
+           </div>
+         </div>
+
+       </div>
+     </drag-scroll>
+   </div>
+ </div> -->
+
+ <div class="user__activity__wrapper">
+   <div class="user__activity">
+     <div class="recent__activities">
+       <h5 class='title'>Recent Activities</h5>
+       <div class="item__wrapper">
+         <div class="item" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]">
+           <li class='details'><span class='dotted'></span><span class='user__name'>name</span> <span
+               class='activity'>activity</span></li>
+         </div>
+       </div>
+     </div>
+     <div class="top__users">
+       <div class="title__wrapper">
+         <h5 class='title'>Top Users</h5>
+         <mat-form-field class='filter'>
+           <select matNativeControl>
+             <option value="orders">By Orders</option>
+             <option value="location">By Locations</option>
+           </select>
+         </mat-form-field>
+       </div>
+
+       <div class="user__details">
+         <div class="user__details__wrapper" *ngFor='let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]'>
+           <div class="user__info">
+             <div class="img__wrapper">
+               <img
+                 src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
+                 alt="">
+             </div>
+             <div class="info">
+               <span class="name">name</span>
+               <p class='contact'>contact</p>
+             </div>
+           </div>
+           <span class='total__order'>Orders</span>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>

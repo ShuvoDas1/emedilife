@@ -1,0 +1,20 @@
+<div class="container-fluid">
+<!--  <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">-->
+<!--    <div class="example-box" *ngFor="let timePeriod of timePeriods" cdkDrag>{{timePeriod}}</div>-->
+<!--  </div>-->
+
+
+  <div class="img-container" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="drop($event)">
+
+    <div class="preview" *ngFor="let data of chooseImage" cdkDrag>
+      <img [src]="data" [alt]="data">
+      <div class="overlay-ac">
+        <button mat-icon-button color="warn" (click)="removeSelectImage(data)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>

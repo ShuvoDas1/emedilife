@@ -1,0 +1,150 @@
+@import "src/theme/exports/table-one";
+
+.header {
+  margin-bottom: 16px;
+}
+
+.title-big {
+  font-size: 22px;
+  font-family: $font-en-primary;
+  color: #333333;
+  padding-bottom: 10px;
+}
+
+.img-thumb {
+  width: 85px;
+  height: 85px;
+  object-fit: scale-down;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background: #d5d5d5;
+}
+
+// RIGHT AREA
+.checkout-summary {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+
+  .img__section {
+
+    height: 100%;
+
+    .swiper {
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+
+    }
+
+    .mySwiper {
+      // border: 2px solid $bg_color;
+      border: 1px solid lightgrey;
+      border-radius: 15px;
+      height: 450px;
+
+      // padding: 10px 20px;
+      img {
+        object-fit: cover;
+      }
+    }
+  }
+
+  .summary {
+    width: 360px;
+    background: #F7F7F7;
+    padding: 16px;
+    border-right: 1px solid #ddd;
+
+    .info {
+      padding: 16px 0;
+      width: 100%;
+
+      h3 {
+        font-size: 18px;
+        font-family: $font-en-primary;
+        font-weight: 600;
+        color: #555;
+        padding-bottom: 12px;
+      }
+
+      p {
+        font-size: 14px;
+        font-family: $font-en-primary;
+        font-weight: 500;
+        line-height: 2;
+        color: #464646;
+
+        span {
+          font-weight: 400;
+        }
+      }
+    }
+
+    &.checkout__details {
+      // width: 360px;
+      // padding: 16px;
+      // background: #F7F7F7;
+
+      .title {
+        padding: 15px 0;
+
+        h3 {
+          font-size: 18px;
+          font-family: $font-en-primary;
+          font-weight: 600;
+          color: #555;
+        }
+      }
+
+      .payable-total {
+        list-style: none;
+
+        li {
+          font-weight: 400;
+          font-family: $font-en-primary;
+          border-bottom: 1px solid #d8d8d8;
+          padding: 17px 0;
+          color: #333333;
+          font-size: 16px;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+  }
+
+
+
+
+}
+
+.images {
+  width: 90%;
+  margin: 15px auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+
+  .img-thumb {
+    width: 100%;
+    height: 180px;
+    cursor: pointer;
+    border: 2px solid #ececec;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}

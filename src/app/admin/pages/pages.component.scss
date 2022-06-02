@@ -1,0 +1,34 @@
+@import "src/theme/variables";
+@import "src/theme/_base";
+
+.wrapper {
+  padding-top: 60px;
+}
+
+// ## SideNav
+mat-sidenav {
+  position: fixed;
+  // margin-top: $toolbar-height;
+  padding-top: 65px;
+  background-color: $secondary_color;
+  width: $mat-sidenav-width;
+}
+
+mat-sidenav-content {
+  // margin-top: $toolbar-height;
+  background-color: #FFFF;
+
+}
+
+
+@media only screen and (max-device-width: 599px) {
+  mat-sidenav-content {
+    margin-top: 65px;
+    min-height: calc(100vh - 65px);
+  }
+
+  mat-sidenav {
+    margin-top: 65px;
+  }
+
+}

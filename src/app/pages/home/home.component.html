@@ -1,0 +1,675 @@
+<div class="divider__home"></div>
+
+<div class="section-showcase  bg">
+  <div class="big-carousel-view">
+    <swiper [loop]="true" style="background-color: #01796F;" [autoplay]="{
+      delay: 5000,
+      disableOnInteraction:false
+    }" [pagination]="{
+      clickable: true
+    }" class="mySwiper">
+      <ng-template swiperSlide *ngFor="let c of carousels">
+        <div class="carousel-img-big">
+          <img [routerLink]="c.url" [defaultImage]="'/assets/images/placeholder/anim.gif'" [lazyLoad]="c?.image" alt=""
+            src="">
+        </div>
+      </ng-template>
+    </swiper>
+  </div>
+</div> <!-- END SHOWCASE -->
+
+<!-- Upload Prescription Mobile Responsive -->
+
+<div class="upload__prescription__wrapper">
+  <div class="img__wrapper">
+    <img src="assets/svg/order-prescription.svg" alt="">
+  </div>
+  <span class='title'>Order With Prescriptions</span>
+  <button class="upload__btn" routerLink="/upload-prescription">Upload</button>
+</div>
+
+<!-- End Upload Prescription Mobile Responsive -->
+
+<!---banner-bottom-area-->
+<section class="banner-bottom-area bg">
+  <div class="container">
+    <!---banner-bottom-area-main-->
+    <div class="banner-bottom-main">
+      <!--card1--->
+      <div class="card1" routerLink="/products">
+        <!--card-text-->
+        <div class="card-left-area">
+          <span routerLink="/products">Order Medicines</span>
+          <a class='book__now__btn' routerLink="/products">Order Now</a>
+        </div>
+        <!--card-right-->
+        <div class="card-right-area">
+          <img src="/assets/images/image/medicine 1.png" alt="">
+        </div>
+        <!--discount-->
+        <div class="card1-discount">
+          <span>15% OFF</span>
+        </div>
+        <!--card-shape-->
+        <div class="card-shape"></div>
+      </div>
+
+      <!--card1--->
+      <div class="card1">
+        <!--card-text-->
+        <div class="card-left-area">
+          <span>Doctor Consultant</span>
+          <a routerLink="/coming-soon" class="second-btn-color book__now__btn">Book Now</a>
+        </div>
+        <!--card-right-->
+        <div class="card-right-area">
+          <img src="/assets/images/image/NoPath - Copy.png" alt="">
+        </div>
+        <!--discount-->
+        <div class="card1-discount">
+          <span>30% OFF</span>
+        </div>
+        <!--card-shape-->
+        <div class="card-shape shape2"></div>
+      </div>
+      <!--card1--->
+      <div class="card1">
+        <!--card-text-->
+        <div class="card-left-area">
+          <span>Lab Tests</span>
+          <a routerLink="/coming-soon" class="third-btn-color book__now__btn">Book Now</a>
+        </div>
+        <!--card-right-->
+        <div class="card-right-area">
+          <img src="/assets/images/image/dsye56iu.png" alt="">
+        </div>
+        <!--discount-->
+        <div class="card1-discount">
+          <span>45% OFF</span>
+        </div>
+        <!--card-shape-->
+        <div class="card-shape shape3"></div>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+<!---shop-by-category-area-->
+<section class="shop-category">
+  <div class="container">
+    <!---title-area-->
+    <div class="title-area">
+      <!---title-->
+      <div class="title">
+        <h3>Shop by Category</h3>
+      </div>
+      <!---see all-btn-->
+      <div class="see-all-btn">
+        <a routerLink="all-categories">See All <i class="fa fa-angle-right"></i></a>
+      </div>
+    </div>
+    <!---shop-category-main-->
+    <div class="shop-category-main">
+      <!--shop-category-card-->
+      <div class="shop-category-card" *ngFor="let data of categories | sort: 'priority'" [id]="data?._id">
+        <!---shop-card-img-->
+        <div class="shop-card-img">
+          <a [routerLink]="['/products', 'categories', data._id]">
+            <img checkImageDefault [src]="data?.image" [alt]="data?.categoryName">
+          </a>
+        </div>
+        <!---shop-card-title-->
+        <div class="shop-card-title">
+          <a [routerLink]="['/products', 'categories', data._id]"
+            routerLinkActive="router-link-active">{{data?.categoryName}}</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="big-offer-banner" *ngIf="bannerByType">
+  <div class="container">
+    <a class="big-offer" [routerLink]="[bannerByType?.routerLink]">
+      <img [defaultImage]="'/assets/images/placeholder/anim.gif'" [lazyLoad]="bannerByType.bigBanner" [alt]="" src="">
+    </a>
+  </div>
+</section> <!-- END BIG OFFER VIEW -->
+
+<section class="section-1 section-category section-md bg">
+  <div class="container">
+    <!--area-->
+    <div class="title-area">
+      <!---title-->
+      <div class="title">
+        <h3>Feature Brands</h3>
+      </div>
+      <!---see all-btn-->
+      <div class="see-all-btn">
+        <a routerLink="all-feature-brands">See All <i class="fa fa-angle-right"></i></a>
+      </div>
+    </div>
+    <!-- *** Shop by department product ***-->
+    <div class="container-with-carousel">
+      <swiper [slidesPerView]="1" [autoplay]="{
+      delay: 5000,
+      disableOnInteraction:false
+    }" [breakpoints]="{
+                '0': {
+                  slidesPerView: 3,
+                  spaceBetween: 10
+                },
+                '560': {
+                  slidesPerView: 3.5,
+                  spaceBetween: 20
+                },
+                '610': {
+                  slidesPerView: 4,
+                  spaceBetween: 20,
+                  slidesPerGroup: 4
+                },
+              '800': {
+                slidesPerView: 5,
+                spaceBetween: 20,
+                slidesPerGroup: 5
+              },
+              '1010': {
+                slidesPerView: 6,
+                spaceBetween: 20,
+                slidesPerGroup: 6
+              },
+              '1200': {
+                slidesPerView: 7,
+                spaceBetween: 20,
+                slidesPerGroup: 7
+              }
+    }" [navigation]="true" class="mySwiper">
+        <ng-template swiperSlide *ngFor="let data of brands | sort: 'priority'">
+          <app-category-card [data]="data"></app-category-card>
+        </ng-template>
+      </swiper>
+    </div>
+    <!--    <div class="section1-main">-->
+    <!--      <app-category-card *ngFor="let data of categories" [data]="data"></app-category-card> &lt;!&ndash;END CARD &ndash;&gt;-->
+    <!--    </div>-->
+  </div>
+</section> <!-- END CATEGORY VIEW SECTION -->
+
+
+
+<section class="section-2 section-recommended section-md bg" *ngIf="featuredCategory && featuredCategory.length">
+  <div class="container" style="margin-top: 32px;" *ngFor="let feCat of featuredCategory">
+
+    <div class="title-area">
+      <!---title-->
+      <div class="title">
+        <h3>{{feCat?.name}}</h3>
+      </div>
+      <!---see all-btn-->
+      <div class="see-all-btn">
+        <a [routerLink]="['/products', 'categories', feCat.category]">See All <i class="fa fa-angle-right"></i></a>
+      </div>
+    </div>
+
+    <div class="wrap-content">
+      <swiper [slidesPerView]="1" [breakpoints]="{
+        '0':{
+          slidesPerView: 2,
+          spaceBetween: 10
+        },
+        '400': {
+          slidesPerView: 2,
+          spaceBetween: 10
+        },
+        '550': {
+          slidesPerView: 2.5,
+          spaceBetween: 15
+        },
+        '680':{
+          slidesPerView: 3,
+          spaceBetween: 15
+        },
+        '760':{
+          slidesPerView: 3.5,
+          spaceBetween: 15
+        },
+        '900':{
+          slidesPerView: 4,
+          spaceBetween: 15
+        },
+        '1150':{
+          slidesPerView: 5,
+          spaceBetween: 15
+        }
+      }" [navigation]="true" class="mySwiper feature-carousel">
+        <ng-template swiperSlide *ngFor="let data of feCat?.products">
+          <app-product-card-one title="home__product__cart" [product]="data"></app-product-card-one>
+        </ng-template>
+      </swiper>
+    </div>
+
+
+  </div>
+</section>
+<!--END RECOMMENDED SECTION VIEW-->
+
+
+
+
+<!----Freuently Booked Lab Tests-->
+<section class="frequently-lab">
+  <div class="container">
+    <!--freuently-title-->
+    <div class="frequently-title">
+      <h3>Frequently Booked Lab Tests</h3>
+    </div>
+    <!--frequently-main-->
+    <div class="frequently-main">
+      <!--frequently-left-->
+      <div class="frequently-left">
+        <ul>
+          <li>100+ Certified Labs</li>
+          <li>10000 Happy Customers</li>
+          <li>Free Sample Collection</li>
+          <li>Accurate Reports</li>
+        </ul>
+      </div>
+      <!--frequently-right-area-->
+      <div class="frequently-right-area">
+
+
+        <swiper [slidesPerView]="1" [breakpoints]="{
+          '0':{
+            slidesPerView: 1,
+            spaceBetween: 10
+          },
+          '450': {
+            slidesPerView: 1.5,
+            spaceBetween: 10
+          },
+          '530':{
+            slidesPerView: 1.7,
+            spaceBetween: 15
+          },
+          '760':{
+            slidesPerView: 2.2,
+            spaceBetween: 15
+          },
+          '900':{
+            slidesPerView: 2.5,
+            spaceBetween: 15
+          },
+          '1150':{
+            slidesPerView: 3.2,
+            spaceBetween: 15
+          }
+        }" [navigation]="true" class="mySwiper">
+          <ng-template swiperSlide *ngFor="let data of labTests">
+
+            <!---frequently-card-->
+            <div class="frequently-card">
+              <!---frequently-discount-->
+              <div class="frequently-discount">
+                <span>25% OFF</span>
+              </div>
+              <!--frequently-card-title-->
+              <div class="frequently-card-title">
+                <a href="#">{{data.name}}</a>
+                <h3>Available at 3 Certified Labs</h3>
+              </div>
+
+              <!--frequently-card-bottom-->
+              <div class="frequently-card-bottom">
+                <!---frequently-price-->
+                <div class="frequently-price">
+                  <h3>{{data.price | number : '2.0-0' }} BDT <span>Onwards</span> </h3>
+                </div>
+                <!---frequently-book-->
+                <div class="frequently-book">
+                  <a routerLink="coming-soon">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </swiper>
+
+      </div>
+      <!---frequently-right-end-->
+
+    </div>
+  </div>
+</section>
+
+
+
+<!--FEATURED PRODUCT SECTION VIEW-->
+<section class="section-2 section-recommended section-md bg" *ngIf="allFeaturedProduct && allFeaturedProduct.length">
+  <div class="container" style="margin-top: 32px;" *ngFor="let feProduct of allFeaturedProduct">
+
+    <div class="title-area">
+      <!---title-->
+      <div class="title">
+        <h3>{{feProduct?.name}}</h3>
+      </div>
+      <!---see all-btn-->
+      <div class="see-all-btn">
+        <a [routerLink]="['/featured-product-list', feProduct._id]">See All <i class="fa fa-angle-right"></i></a>
+      </div>
+    </div>
+
+    <div class="wrap-content">
+      <swiper [slidesPerView]="1" [breakpoints]="{
+        '0':{
+          slidesPerView: 2,
+          spaceBetween: 10
+        },
+        '400': {
+          slidesPerView: 2,
+          spaceBetween: 10
+        },
+        '550': {
+          slidesPerView: 2.5,
+          spaceBetween: 15
+        },
+        '680':{
+          slidesPerView: 3,
+          spaceBetween: 15
+        },
+        '760':{
+          slidesPerView: 3.5,
+          spaceBetween: 15
+        },
+        '900':{
+          slidesPerView: 4,
+          spaceBetween: 15
+        },
+        '1150':{
+          slidesPerView: 5,
+          spaceBetween: 15
+        }
+      }" [navigation]="true" class="mySwiper feature-carousel">
+        <ng-template swiperSlide *ngFor="let data of feProduct?.products">
+          <app-product-card-one title="home__product__cart" [product]="data"></app-product-card-one>
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
+</section>
+<!--END FEATURED PRODUCT SECTION VIEW-->
+
+
+
+
+
+
+
+
+
+<!--<section class="section-2 bg section-recommended section-md bg" *ngIf="recommendProducts && recommendProducts.length">-->
+<!--  <div class="container">-->
+<!--    &lt;!&ndash;-title-area&ndash;&gt;-->
+<!--    <div class="title-area">-->
+<!--      &lt;!&ndash;-title&ndash;&gt;-->
+<!--      <div class="title">-->
+<!--        <h3>Gummy Vitamins</h3>-->
+<!--      </div>-->
+<!--      &lt;!&ndash;-see all-btn&ndash;&gt;-->
+<!--      <div class="see-all-btn">-->
+<!--        <a href="#">See All <i class="fa fa-angle-right"></i></a>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="wrap-content">-->
+<!--      <swiper [slidesPerView]="1"-->
+<!--      [breakpoints]="{-->
+<!--        '0':{-->
+<!--          slidesPerView: 1.5,-->
+<!--          spaceBetween: 10-->
+<!--        },-->
+<!--        '400': {-->
+<!--          slidesPerView: 2,-->
+<!--          spaceBetween: 10-->
+<!--        },-->
+<!--        '550': {-->
+<!--          slidesPerView: 2.5,-->
+<!--          spaceBetween: 15-->
+<!--        },-->
+<!--        '680':{-->
+<!--          slidesPerView: 3,-->
+<!--          spaceBetween: 15-->
+<!--        },-->
+<!--        '760':{-->
+<!--          slidesPerView: 3.5,-->
+<!--          spaceBetween: 15-->
+<!--        },-->
+<!--        '900':{-->
+<!--          slidesPerView: 4,-->
+<!--          spaceBetween: 15-->
+<!--        },-->
+<!--        '1150':{-->
+<!--          slidesPerView: 5,-->
+<!--          spaceBetween: 15-->
+<!--        }-->
+<!--      }"-->
+<!--              [navigation]="true"-->
+<!--              class="mySwiper feature-carousel"-->
+<!--      >-->
+<!--        <ng-template swiperSlide *ngFor="let data of recommendProducts">-->
+<!--          <app-product-card-one [product]="data"></app-product-card-one>-->
+<!--        </ng-template>-->
+<!--      </swiper>-->
+<!--    </div>-->
+
+
+<!--  </div>-->
+<!--</section>&lt;!&ndash;END RECOMMENDED SECTION VIEW&ndash;&gt;-->
+
+
+
+<section class="section-2 bg section-recommended section-md bg" *ngIf="recommendProducts && recommendProducts.length">
+  <div class="container">
+    <!---title-area-->
+    <div class="title-area">
+      <!---title-->
+      <div class="title">
+        <h3>Recommend For You</h3>
+      </div>
+      <!---see all-btn-->
+      <!--      <div class="see-all-btn">-->
+      <!--        <a href="#">See All <i class="fa fa-angle-right"></i></a>-->
+      <!--      </div>-->
+    </div>
+
+    <div class="wrap-content">
+      <swiper [slidesPerView]="1" [breakpoints]="{
+        '0':{
+          slidesPerView: 2,
+          spaceBetween: 10
+        },
+        '400': {
+          slidesPerView: 2,
+          spaceBetween: 10
+        },
+        '550': {
+          slidesPerView: 2.5,
+          spaceBetween: 15
+        },
+        '680':{
+          slidesPerView: 3,
+          spaceBetween: 15
+        },
+        '760':{
+          slidesPerView: 3.5,
+          spaceBetween: 15
+        },
+        '900':{
+          slidesPerView: 4,
+          spaceBetween: 15
+        },
+        '1150':{
+          slidesPerView: 5,
+          spaceBetween: 15
+        }
+      }" [navigation]="true" class="mySwiper feature-carousel">
+        <ng-template swiperSlide *ngFor="let data of recommendProducts">
+          <app-product-card-one title="home__product__cart" [product]="data"></app-product-card-one>
+        </ng-template>
+      </swiper>
+    </div>
+
+
+  </div>
+</section>
+<!--END RECOMMENDED SECTION VIEW-->
+
+<!---health-concern--->
+<!--<section class="health-concern section-recommended">-->
+<!--  <div class="container">-->
+<!--      &lt;!&ndash;-title-area&ndash;&gt;-->
+<!--      <div class="title-area">-->
+<!--        &lt;!&ndash;-title&ndash;&gt;-->
+<!--        <div class="title">-->
+<!--          <h3>Health Concern</h3>-->
+<!--        </div>-->
+<!--        &lt;!&ndash;-see all-btn&ndash;&gt;-->
+<!--        <div class="see-all-btn">-->
+<!--          <a href="#">See All <i class="fa fa-angle-right"></i></a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      &lt;!&ndash;-health-concern-main&ndash;&gt;-->
+<!--      <div class="health-concern-main">-->
+
+<!--        <swiper [slidesPerView]="1"-->
+<!--        [breakpoints]="{-->
+<!--          '0': {-->
+<!--            slidesPerView: 2,-->
+<!--            spaceBetween: 10-->
+<!--          },-->
+<!--          '450': {-->
+<!--            slidesPerView: 2.5,-->
+<!--            spaceBetween: 15-->
+<!--          },-->
+<!--          '610': {-->
+<!--            slidesPerView: 3,-->
+<!--            spaceBetween: 15-->
+<!--          },-->
+<!--        '800': {-->
+<!--          slidesPerView: 4,-->
+<!--          spaceBetween: 15-->
+<!--        },-->
+<!--        '1010': {-->
+<!--          slidesPerView: 5,-->
+<!--          spaceBetween: 15-->
+<!--        },-->
+<!--        '1200': {-->
+<!--          slidesPerView: 6,-->
+<!--          spaceBetween: 15-->
+<!--        }-->
+<!--}"-->
+<!--                [navigation]="true"-->
+<!--                class="mySwiper feature-carousel"-->
+<!--        >-->
+<!--          <ng-template swiperSlide *ngFor="let data of healthConcernArray">-->
+<!--            <div class="health-concern-card" [id]="data?._id">-->
+<!--              <div class="card-content">-->
+<!--                <img [src]="data?.image" [alt]="data?.title">-->
+<!--                <a [routerLink]="[data?.routerLink]" routerLinkActive="router-link-active" >{{data?.title}}</a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </ng-template>-->
+<!--        </swiper>-->
+<!--        &lt;!&ndash;health-concern-card&ndash;&gt;-->
+<!--      </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+<!----article-area-->
+<section class="article-area bg section-recommended">
+  <div class="container">
+    <div class="title-area">
+      <!---title-->
+      <div class="title">
+        <h3>Health Articles</h3>
+      </div>
+      <!---see all-btn-->
+      <div class="see-all-btn">
+        <a routerLink="/blog">See All <i class="fa fa-angle-right"></i></a>
+      </div>
+    </div>
+    <!---aricle-main-->
+    <div class="article-main">
+      <!-- <div class="blog-card" *ngFor="let data of allBlogs">
+
+        <app-blog-card></app-blog-card>
+      </div> -->
+    </div>
+
+
+    <div class="article-main">
+      <swiper [slidesPerView]="1" [loop]="true" [breakpoints]="{
+        '0':{
+          slidesPerView: 2,
+          spaceBetween: 10
+        },
+        '550': {
+          slidesPerView: 2.5,
+          spaceBetween: 15
+        },
+        '760':{
+          slidesPerView: 3,
+          spaceBetween: 15
+        },
+        '860':{
+          slidesPerView: 3.5,
+          spaceBetween: 15
+        },
+        '1150':{
+          slidesPerView: 4,
+          spaceBetween: 15
+        }
+      }" [navigation]="true" class="mySwiper feature-carousel">
+        <ng-template swiperSlide *ngFor="let data of allBlogs">
+          <div class="blog-card">
+            <app-blog-card title="home__product__cart" [data]="data"></app-blog-card>
+          </div>
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
+
+  <!-- Counter Section -->
+
+
+</section>
+
+<div class="counter__wrapper">
+  <div class="counters">
+    <div class="item">
+      <img src="assets/svg/products-counter.svg" alt="products">
+      <span class='total__count'>26000+</span>
+      <span>Medicines</span>
+    </div>
+    <div class="item border">
+      <img src="assets/svg/generic-counter.svg" alt="products">
+      <span class='total__count '>2000+</span>
+      <span>Generics</span>
+    </div>
+    <div class="item">
+      <img src="assets/svg/pharmaceuticals-counter.svg" alt="products">
+      <span class='total__count '>200+</span>
+      <span>Pharmaceuticals</span>
+    </div>
+  </div>
+</div>
+
+<!---footer-banner-->
+<div class="footer-banner">
+
+
+  <img [routerLink]="[bannerByType?.routerLink]"
+    [lazyLoad]="bannerByType?.footerBanner" [alt]="" src={{bannerByType?.footerBanner}}>
+
+</div>

@@ -1,0 +1,23 @@
+@import "src/theme/_base";
+
+.all__cards__wrapper {
+
+  .session__wrapper {
+
+    padding: 20px 40px;
+
+    h3 {
+      padding-bottom: 10px;
+      font-size: 18px;
+      color: $primary_color;
+
+    }
+
+    .wrapper {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(200px, 1fr));
+      grid-gap: calc(2em + 0.5vh) calc(1.5em + 1vmin);
+    }
+  }
+
+}

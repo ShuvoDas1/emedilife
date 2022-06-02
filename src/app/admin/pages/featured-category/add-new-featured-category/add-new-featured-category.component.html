@@ -1,0 +1,136 @@
+<div style="position: relative">
+
+  <div class="header-dialog">
+    <h1 mat-dialog-title>Featured Category</h1>
+    <!--    <div class="color-pick">-->
+    <!--      <a href="https://www.hexcolortool.com/" target="_blank">Pick Your Color</a>-->
+    <!--    </div>-->
+  </div>
+
+  <form [formGroup]="dataForm" (ngSubmit)="onSubmit()" #templateForm="ngForm" fxLayout="column"
+    fxLayoutAlign="space-around center">
+
+    <!--    <div (click)="onHoldInputData()" class="imag-view" [routerLink]="['/' + adminBaseUrl, 'image-gallery']"-->
+    <!--         [state]="{url: router.url}">-->
+    <!--      <img [src]="pickedImage" alt="">-->
+    <!--    </div>-->
+
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput placeholder="Enter name" required>
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>priority</mat-label>
+      <input formControlName="priority" matInput placeholder="Enter priority" required digitOnly>
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Category Name</mat-label>
+      <mat-select formControlName="category" (selectionChange)="onCatSelect($event)">
+        <mat-option *ngFor="let data of categories" [value]="data._id">
+          {{  data.categoryName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!--    <mat-form-field appearance="outline">-->
+    <!--      <mat-label>shortDesc</mat-label>-->
+    <!--      <input formControlName="shortDesc" matInput placeholder="Enter shortDesc" required>-->
+    <!--      <mat-error>This field is required</mat-error>-->
+    <!--    </mat-form-field>-->
+
+    <!--    <mat-form-field appearance="outline">-->
+    <!--      <mat-label>info</mat-label>-->
+    <!--      <input formControlName="info" matInput placeholder="Enter info" required>-->
+    <!--      <mat-error>This field is required</mat-error>-->
+    <!--    </mat-form-field>-->
+
+    <!--    <mat-form-field appearance="outline">-->
+    <!--      <mat-label>routerLink</mat-label>-->
+    <!--      <input readonly formControlName="routerLink" matInput placeholder="Enter shortDesc" required>-->
+    <!--      <mat-error>This field is required</mat-error>-->
+    <!--    </mat-form-field>-->
+
+    <!--    <mat-form-field appearance="outline">-->
+    <!--      <mat-label>cardBackground</mat-label>-->
+    <!--      <input formControlName="cardBackground" matInput placeholder="Enter cardBackground" required>-->
+    <!--      <mat-error>This field is required</mat-error>-->
+    <!--    </mat-form-field>-->
+
+    <!--    <mat-form-field appearance="outline">-->
+    <!--      <mat-label>cardBackground</mat-label>-->
+    <!--      <input matInput [ngxMatColorPicker]="picker" formControlName="cardBackground">-->
+    <!--      <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>-->
+    <!--      <ngx-mat-color-picker #picker></ngx-mat-color-picker>-->
+    <!--    </mat-form-field>-->
+
+    <!--    <mat-form-field appearance="outline">-->
+    <!--      <mat-label>cardBtnColor</mat-label>-->
+    <!--      <input formControlName="cardBtnColor" matInput placeholder="Enter cardBtnColor" required>-->
+    <!--      <mat-error>This field is required</mat-error>-->
+    <!--    </mat-form-field>-->
+
+    <div class="select-product">
+      <button type="button" mat-raised-button color="accent" (click)="openComponentDialog()">
+        <mat-icon>add</mat-icon>
+        Choose Product
+      </button>
+    </div>
+    <div class="save-btn">
+      <button mat-raised-button color="primary"
+        type="submit">{{id ? 'Update Featured Category' : 'Add Featured Category'}}</button>
+    </div>
+  </form>
+
+  <div class="product-view" *ngIf="products && products.length > 0">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr class="table-head">
+            <th scope="col">{{'Name'}}</th>
+            <th scope="col">{{'Image'}}</th>
+            <th scope="col">{{'SKU'}}</th>
+            <th scope="col">{{'Category'}}</th>
+            <th scope="col">{{'Retail Price'}}</th>
+            <th scope="col">{{'Sale Price'}}</th>
+            <th scope="col">{{'Available'}}</th>
+            <th scope="col">{{'Details'}}</th>
+          </tr>
+        </thead> <!-- End Table Head -->
+        <tr *ngFor="let data of products; let i = index">
+          <td [attr.data-label]="'Name'">{{data.productName}}</td>
+          <td [attr.data-label]="'Image'">
+            <img
+              [src]="data?.images && data?.images.length > 0 ? data.images[0] : '/assets/images/placeholder/test.png'"
+              [alt]="data.productName">
+          </td>
+          <td [attr.data-label]="'SKU'">{{data.sku}}</td>
+          <td [attr.data-label]="'Category'">{{data.categorySlug}}</td>
+          <td [attr.data-label]="'Retail Price'">৳ {{data.price}}</td>
+          <td [attr.data-label]="'Sale Price'">৳ {{data | price: 'priceWithDiscount'}}</td>
+          <td [attr.data-label]="'Available'">{{data.quantity}}</td>
+          <td [attr.data-label]="'Details'" class="details">
+            <a class="link-hover" [href]="'/product-details/' + data.productSlug" target="_blank" mat-icon-button>
+              <mat-icon>visibility</mat-icon>
+            </a>
+            <!-- <button (click)=deleteProduct(data._id)><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="red"
+                viewBox="0 0 24 24" width="10" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg></button> -->
+            <div (click)=deleteProduct(data._id) class="delete__button"><svg xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6" width="25" fill="none" viewBox="0 0 24 24" stroke="red">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg></div>
+          </td>
+        </tr><!-- End Table Body -->
+
+      </table>
+
+    </div>
+  </div> <!-- Product View Table -->
+</div>

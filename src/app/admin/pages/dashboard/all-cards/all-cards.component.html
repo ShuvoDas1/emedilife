@@ -1,0 +1,153 @@
+<div class="all__cards__wrapper">
+
+  <!-- Brands -->
+
+
+  <div class="session__wrapper">
+    <h3>Brands</h3>
+
+    <div class="wrapper" *ngIf="brand">
+
+      <item-card-count title="All Brands" route="/admin/brands" [value]="brand.allBrands"
+        image="assets/dashboard/brand.svg"></item-card-count>
+
+      <item-card-count title="All Feature Brands" route="/admin/brands" [value]="brand.allFeatureBrands"
+        image="assets/dashboard/brand.svg"></item-card-count>
+
+      <item-card-count title="All Non Feature Brands" route="/admin/brands" [value]="brand.allNonFeaturedBrands"
+        image="assets/dashboard/brand.svg"></item-card-count>
+    </div>
+  </div>
+
+
+  <!-- End Brands -->
+
+  <!-- Product -->
+
+
+  <div class="session__wrapper">
+    <h3>Products</h3>
+
+    <div class="wrapper" *ngIf="product">
+
+      <item-card-count title="All Products" route="/admin/products" [value]="product.allProduct"
+        image="assets/dashboard/product.svg"></item-card-count>
+
+      <item-card-count title="All Feature Products" route="/admin/products" [value]="product.allFeaturedProduct"
+        image="assets/dashboard/product.svg"></item-card-count>
+
+      <item-card-count title="All Non Feature Products" route="/admin/products" [value]="product.allNonFeaturedProduct"
+        image="assets/dashboard/product.svg"></item-card-count>
+
+
+      <item-card-count title="All Product In Stock" route="/admin/products" [value]="product.allProductInStock"
+        image="assets/dashboard/product.svg"></item-card-count>
+
+
+      <item-card-count title="All Products Out of Stock" route="/admin/products" [value]="product.allProductOutStock"
+        image="assets/dashboard/product.svg"></item-card-count>
+
+      <item-card-count title="All  Visible Products" route="/admin/products" [value]="product.allVisibleProduct"
+        image="assets/dashboard/product.svg"></item-card-count>
+
+
+      <item-card-count title="All Not Visible Products" route="/admin/products" [value]="product.allNotVisibleProduct"
+        image="assets/dashboard/product.svg"></item-card-count>
+
+
+    </div>
+
+
+  </div>
+
+
+  <!-- End Product -->
+
+
+
+  <!-- Orders -->
+
+  <div class="session__wrapper">
+    <h3>Orders</h3>
+
+    <div class="wrapper" *ngIf="orders">
+
+      <item-card-count title="All Orders" route="/admin/orders" [value]="orders.allOrder"
+        image="assets/dashboard/order.svg"></item-card-count>
+
+      <item-card-count title="All Pending Order" route="/admin/orders" [value]="orders.allPendingOrder"
+        image="assets/dashboard/order.svg"></item-card-count>
+
+      <item-card-count title="All Processing Orders" route="/admin/orders" [value]="orders.allProcessingOrder"
+        image="assets/dashboard/order.svg"></item-card-count>
+
+      <item-card-count title="All Delivered Orders" route="/admin/orders" [value]="orders.allDeliveredOrder"
+        image="assets/dashboard/order.svg"></item-card-count>
+
+      <item-card-count title="All Confirm Orders" route="/admin/orders" [value]="orders.allConfirmOrders"
+        image="assets/dashboard/order.svg"></item-card-count>
+
+
+      <item-card-count title="All Refund Orders" route="/admin/orders" [value]="orders.allRefundOrder"
+        image="assets/dashboard/order.svg"></item-card-count>
+
+
+      <item-card-count title="All Shipping Orders" route="/admin/orders" [value]="orders.allShippingOrder"
+        image="assets/dashboard/order.svg"></item-card-count>
+
+
+
+    </div>
+
+
+  </div>
+
+  <!-- End Orders -->
+
+  <!-- Category -->
+
+  <div class="session__wrapper">
+    <h3>Category</h3>
+
+    <div class="wrapper" *ngIf="category">
+
+      <item-card-count title="All Category" route="/admin/categories" [value]="category.allCategory"
+        image="assets/dashboard/category.svg"></item-card-count>
+
+      <item-card-count title="All Feature Category" route="/admin/categories" [value]="category.allFeatureCategory"
+        image="assets/dashboard/category.svg"></item-card-count>
+
+      <item-card-count title="All Non Feature Category" route="/admin/categories"
+        [value]="category.allNonFeatureCategory" image="assets/dashboard/category.svg"></item-card-count>
+
+      <item-card-count title="Sub Category" route="/admin/sub-categories" [value]="subCategory.allSubCategory"
+        image="assets/dashboard/category.svg"></item-card-count>
+
+    </div>
+
+
+  </div>
+
+  <!-- End Category -->
+
+  <!-- Generics -->
+
+  <div class="session__wrapper">
+    <h3>Generics</h3>
+
+    <div class="wrapper" *ngIf="generic || unitTypes">
+
+      <item-card-count title="All Generics" route="/admin/generics" [value]="generic.allGeneric"
+        image="assets/dashboard/category.svg"></item-card-count>
+
+      <item-card-count title="All Unit Types" route="/admin/unit-types" [value]="unitTypes.allUnitTypes"
+        image="assets/dashboard/category.svg"></item-card-count>
+
+    </div>
+
+
+  </div>
+
+  <!-- End Generics -->
+
+</div>

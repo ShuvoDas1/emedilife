@@ -1,0 +1,360 @@
+<!-- Prescription Details -->
+
+<div class="prescriptions__details">
+  <!-- Header  -->
+  <div class="top__section">
+    <h2 class="title">Order From Prescription - <span style="color: #00a693">{{order?.orderId}}</span></h2>
+    <button mat-raised-button color="warn" (click)="openCancelOrderDialog()">
+      <mat-icon>delete</mat-icon> Cancel Order
+    </button>
+  </div>
+  <!-- End Header  -->
+
+
+
+  <!-- Main Section -->
+
+  <div class="main__section">
+
+    <!-- Product List Section -->
+
+    <div class="product__list__wrapper">
+      <h3 class="title">Product List</h3>
+
+      <div class="divider"></div>
+
+      <!-- Search  -->
+
+      <div class="search">
+        <div class="search__wrapper">
+
+          <div class="search__wrapper__input">
+            <input type="text" #input (keyup)="getSearchDataFromInput(input.value)"
+              placeholder="Search medicine,injections" name='search' [matAutocomplete]="auto" />
+
+
+            <mat-spinner *ngIf="isLoading" matSuffix diameter="16"></mat-spinner>
+
+          </div>
+
+          <!-- Auto Complete with Inline Css -->
+
+          <mat-autocomplete #auto="matAutocomplete" class="auto__complete__wrapper"
+            style="padding: 10px 15px !important; ">
+            <mat-option [value]="product.productName" style="height: 70px !important"
+              *ngFor="let product of searchProducts" (click)=selectProduct(product)>
+
+              <div class="product__wrapper" style="display: flex; justify-content: space-between; padding: 20px 10px; ">
+                <div class="img__wrapper" style="width: 55px; height: 55px;">
+                  <img
+                    [src]="product.images && product.images.length > 0 ? product?.images[0] : '/assets/images/placeholder/test.png'"
+                    [alt]="product?.productName">
+                </div>
+                <div class="discription__wrapper"
+                  style="display: flex; justify-content: space-between; margin-left: 10px; flex: 1">
+                  <span>{{product.productName | slice : '0: 30'}}</span>
+                  <span>৳{{product.prices[0] | priceData: 'priceWithDiscount' | number : '': 'bn'}}</span>
+                  <!-- <span>৳{{product.prices[0] | priceData: 'priceWithDiscount' | number : '': 'bn'}}</span> -->
+                </div>
+              </div>
+
+            </mat-option>
+          </mat-autocomplete>
+          <div class="search__wrapper__icon">
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24"
+                stroke="white">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- End Search -->
+
+      <div class="divider"></div>
+
+      <!-- Product Add -->
+
+      <div class="add__product__table__wrapper {{selectedItem.productId !==null ? 'active' : ''}} ">
+        <table class="table">
+
+          <tr class="table__header">
+            <th>Name</th>
+            <th>Variant</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total Price</th>
+            <th>Add</th>
+          </tr>
+          <tr class="data" *ngIf="selectedItem" #productData>
+            <td name="name" value="name">{{selectedItem.productName}}</td>
+
+            <td class='variant ' name="variant" *ngFor=" let data of selectedItem?.priceData; index as i"
+              (click)=(selectedUnitType(i))>
+              <span name="unit" [class.active]="data.selected">{{data?.unit?.name}}</span>
+            </td>
+
+            <td class="quantity"><span (click)="decrementQty()">-</span><input type="text" [value]="selectedQty"
+                (keyup)=onChangeQty($event) name=' quantity'>
+              <span (click)="incrementQty()">+</span>
+            </td>
+
+            <td class="price" name="price">৳ {{selectedItem.price}}</td>
+
+            <td class="total__price" name="totalPrice">৳ {{(selectedItem.totalPrice) | number : "1.0-0"}}
+            </td>
+
+            <td class="add__button" type="button" (click)=(addProductData(selectedItem))><svg
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                  d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg></td>
+
+            <!-- <td class="delete__button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                  clip-rule="evenodd" />
+              </svg></td> -->
+          </tr>
+
+        </table>
+      </div>
+
+      <!-- End Product Add -->
+
+      <div class="divider"></div>
+
+      <!-- Product Table And Delivery Summary Section -->
+
+      <div class="product__table__wrapper ">
+
+        <!-- Prroduct Table Section -->
+
+        <table class="product__table {{finalProducts.length > 0 && 'active' }}">
+          <tr class="product__table__header">
+            <th>Product</th>
+            <th>Variant</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total Price</th>
+            <th>Remove</th>
+          </tr>
+          <tr class="product__table__data" *ngFor="let data of finalProducts; index as i">
+            <td>{{data.productName}}</td>
+            <td>{{data.unitType.name}}</td>
+            <td>{{data.quantity}}</td>
+            <td>{{data.price}}</td>
+            <td>{{(data.price * data.quantity) | number : '1.0-0'}}</td>
+            <td class="delete__button" (click)=removeProduct(i)><svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                  clip-rule="evenodd" />
+              </svg></td>
+          </tr>
+        </table>
+
+        <!-- End Product Table Section -->
+
+        <div class="divider"></div>
+
+        <!-- Delivery And Summary Section -->
+
+        <div class="delivery__summary__wrapper">
+
+          <!-- Delivery Options -->
+
+          <div class="delivery__wrapper">
+            <h3>Delivery Address</h3>
+
+            <div class="name item">
+              <mat-icon>account_circle</mat-icon>
+              <span>{{order?.name ? order?.name : 'N/A'}}</span>
+
+            </div>
+            <div class="phone item">
+              <mat-icon>phone</mat-icon>
+              <span>{{order?.phoneNo}}</span>
+            </div>
+            <div class="location item">
+              <mat-icon> person_pin_circle</mat-icon>
+              <span>{{order?.shippingAddress}}</span>
+            </div>
+
+
+
+          </div>
+
+          <!-- Summary -->
+
+          <div class="summary">
+            <!--cupon-area-->
+            <div class="cupon__area">
+              <!---code-link-->
+              <div class="cupon__code__link">
+                <a href="javascript:">Have a Coupon Code?</a>
+              </div>
+              <!---cupon-input-area-->
+              <div class="cupon__input__area">
+                <!---cupon-input-->
+                <div class="cupon__input">
+                  <input type="text" name="couponCode" placeholder="Coupon code" [(ngModel)]="couponText"
+                    [ngModelOptions]="{standalone: true}">
+                </div>
+                <!--cupon-apply-btn-->
+                <div class="cupon__apply__btn">
+                  <button *ngIf="!couponData" type="button" (click)="applyCoupon()">Apply</button>
+                  <button *ngIf="couponData" type="button" (click)="removeCoupon()">Remove</button>
+
+                </div>
+
+              </div>
+            </div>
+            <!--cupon-area-end-->
+            <div class="summary__wrapper">
+
+              <div class="summery-title">
+                <h3>Summery</h3>
+              </div>
+
+              <!---summery-info-->
+              <div class="summery-info">
+                <!--summery-left-->
+                <div class="summery-left">
+                  <span>Sub Total</span>
+                </div>
+                <!--summery-right-->
+                <div class="summery-right">
+                  <span>{{subTotal | number : '1.0-0' }} TK</span>
+                </div>
+              </div>
+
+              <!---summery-info-->
+              <div class="summery-info">
+                <!--summery-left-->
+                <div class="summery-left">
+                  <span>Delivery Charge</span>
+                </div>
+                <!--summery-right-->
+                <div class="summery-right">
+                  <span>{{shippingCharge == 0 ? "FREE" : (shippingCharge  | number : "1.0-0")}} <span
+                      [style.display]="shippingCharge == 0 && 'none'">TK</span>
+                  </span>
+                  <!-- <span>Free</span> -->
+                </div>
+              </div>
+
+              <div class="summery-info" *ngIf="couponData">
+                <!--pay-details-left-->
+                <div class="summery-left">
+                  <span>Coupon Discount </span>
+                </div>
+                <!--pay-details-right-->
+                <div class="summery-right">
+                  <span> {{finalDiscount | number : '1.2': 'bn'}} TK</span>
+                </div>
+              </div>
+
+              <!---summery-info-->
+              <div class="summery-info">
+                <!--summery-left-->
+                <div class="summery-left">
+                  <small>Total</small>
+                </div>
+                <!--summery-right-->
+                <div class="summery-right">
+                  <small>{{ (subTotal + shippingCharge) - finalDiscount | number : '2.0-0': 'bn'}} TK</small>
+
+                </div>
+              </div>
+            </div>
+            <button mat-raised-button color="primary" class="place__button" (click)="openConfirmDialog()">
+              <mat-icon>check</mat-icon> Place Order Now
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- End Product Table And Delivery Summary Section -->
+
+
+      <!-- End Delivery And Summary Section -->
+
+    </div>
+
+    <!-- End Product List Section -->
+
+    <!-- Account And Prescription Section -->
+
+    <div class="account__prescription__wrapper">
+
+      <!-- Account Details -->
+
+      <div class="account__details__wrapper">
+        <h3>Account Details</h3>
+        <div class="details__wrapper">
+          <div class="left">
+
+            <div class="item">
+              <span class="title">Name:</span>
+              <span class="value">{{userInfo?.fullName ?userInfo?.fullName : "N/A" }}</span>
+            </div>
+            <div class="item">
+              <span class="title">Mail:</span>
+              <span class="value">{{userInfo?.email ? userInfo?.email : "N/A"}}</span>
+            </div>
+
+          </div>
+          <div class="right">
+
+            <div class="item">
+              <span class="title">Number:</span>
+              <span class="value">{{userInfo?.phoneNo ? userInfo?.phoneNo : "N/A"}}</span>
+            </div>
+            <div class="item">
+              <span class="title">Location:</span>
+              <span class="value">{{userInfo?.area ? userInfo?.area : "N/A" }}</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- End Account Details -->
+
+      <div class="divider"></div>
+
+      <!-- Prescription Image Section -->
+
+      <div class="prescription__wrapper">
+        <h3>Prescription</h3>
+
+
+        <div class='img__section'>
+          <swiper style="--swiper-navigation-color: #fff;--swiper-pagination-color: #fff" [zoom]="true"
+            [navigation]="true" [pagination]="{clickable: true}" class="mySwiper">
+            <ng-template swiperSlide *ngFor="let image of prescriptionImages">
+              <div class="swiper-zoom-container">
+                <img [src]="image" />
+              </div>
+            </ng-template>
+          </swiper>
+        </div>
+
+      </div>
+
+      <!-- End Prescription Image Section -->
+
+    </div>
+
+    <!-- Account And Prescription Section -->
+
+
+  </div>
+
+</div>

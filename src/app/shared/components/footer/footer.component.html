@@ -1,0 +1,161 @@
+<!----******** footer-area *************-->
+<footer class="footer-area">
+  <div class="container">
+    <!---foooter-top-area-->
+    <div class="footer-top-area">
+      <!---footer-link-->
+      <div class="footer-link">
+        <!---footer-title-->
+        <div class="footer-title">
+          <h3>Know Emedilife</h3>
+        </div>
+        <!---link-->
+        <ul>
+          <li><a routerLink="/pages/about-us">About Us</a></li>
+          <li><a routerLink="/pages/contact-us">Contact Us</a></li>
+          <li><a routerLink="">Careers</a></li>
+          <li><a routerLink="">Special Offers</a></li>
+          <!--          <li><a routerLink="/pages/about-us">IP Policy</a></li>-->
+          <li><a routerLink="/faq">FAQ</a></li>
+          <!--          <li><a routerLink="/pages/about-us">Policy</a></li>-->
+        </ul>
+
+      </div>
+
+      <div class="footer-link">
+        <!---footer-title-->
+        <div class="footer-title">
+          <h3>Our Services</h3>
+        </div>
+        <!---link-->
+        <ul>
+          <li><a routerLink="/products">Order Medicine</a></li>
+          <li><a routerLink="">E-Appointment </a></li>
+          <li><a routerLink="">Doctor Consultant</a></li>
+          <li><a routerLink="">Lab test</a></li>
+          <li><a routerLink="/blog">Health Articles</a></li>
+          <!--          <li><a routerLink="/pages/about-us">Grievance Redressal</a></li>-->
+          <!--          <li><a routerLink="/pages/about-us">Policy</a></li>-->
+        </ul>
+
+      </div>
+      <div class="footer-link">
+        <!---footer-title-->
+        <div class="footer-title">
+          <h3>Our Policies</h3>
+        </div>
+        <!---link-->
+        <ul>
+          <li><a routerLink="/pages/privacy-policy">Privacy Policy</a></li>
+          <li><a routerLink="/pages/terms-and-conditions">Terms and Conditions</a></li>
+          <li><a routerLink="/pages/return-&-refund-policy"> Refund Policy</a></li>
+          <li><a routerLink="">Fees and Delivery Policy</a></li>
+          <li><a routerLink="">Cookies Policy</a></li>
+          <!--          <li><a routerLink="/pages/about-us">Careers</a></li>-->
+          <!--          <li><a routerLink="/pages/about-us">IP Policy</a></li>-->
+          <!--          <li><a routerLink="/pages/about-us">Grievance Redressal</a></li>-->
+          <!--          <li><a routerLink="/pages/about-us">Policy</a></li>-->
+        </ul>
+
+      </div>
+
+
+      <!---footer-sociel-->
+      <div class="footer-social">
+        <!---footer-title-->
+        <div class="footer-title">
+          <h3>Connect</h3>
+        </div>
+        <!---social-icon-->
+        <div class="social-icon">
+          <h4>Social Media Links</h4>
+          <ul>
+            <li><a [href]="facebook?.value" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a [href]="twitter?.value" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a [href]="linkedIn?.value" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+            <li><a [href]="youTube?.value" target="_blank"><i class="fab fa-youtube"></i></a></li>
+          </ul>
+          <h4>Want Daily Healthcare update?</h4>
+          <div class="footer-sign-up">
+            <a routerLink="/login">Sign Up</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!---play-store-->
+      <div class="play-store">
+        <!---footer-title-->
+        <div class="footer-title">
+          <h3>Download Apps</h3>
+        </div>
+        <div class="play-store-img">
+          <ul>
+            <li><a [href]="playStore" target="_blank"><img src="/assets/images/image/Group 6711df0.png" alt=""></a></li>
+            <li><a [href]="appStore" target="_blank"><img src="/assets/images/image/Group 67110.png" alt=""></a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!----footer-bottom-atea-->
+    <div class="footer-bottom-area">
+      <!--footer-bottom-details-->
+      <div class="footer-bottom-details">
+        <!---img-->
+        <div class="footer-bottom-img">
+          <img src="/assets/images/image/verification.png" alt="">
+        </div>
+        <!---bottom-info-->
+        <div class="bottom-info">
+          <h3>{{footerData?.title1}}</h3>
+          <p>{{footerData?.title1Des}}</p>
+        </div>
+      </div>
+      <!--footer-bottom-details-->
+      <div class="footer-bottom-details">
+        <!---img-->
+        <div class="footer-bottom-img">
+          <img src="/assets/images/image/shield.png" alt="">
+        </div>
+        <!---bottom-info-->
+        <div class="bottom-info">
+          <h3>{{footerData?.title2}}</h3>
+          <p>{{footerData?.title2Des}}</p>
+        </div>
+      </div>
+
+      <!--footer-bottom-details-->
+      <div class="footer-bottom-details">
+        <!---img-->
+        <div class="footer-bottom-img">
+          <img src="/assets/svg/money.svg" alt="">
+        </div>
+        <!---bottom-info-->
+        <div class="bottom-info">
+          <h3>{{footerData?.title3}}</h3>
+          <p>{{footerData?.title3Des}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!---footer-payment-->
+    <div class="footer-payment">
+      <img class="img__large__device" src="/assets/images/image/SSL-Commerz-Pay-With-logo-All-Size-03.png" alt="">
+
+
+      <!-- Mobile Responsive  -->
+      <img class="mobile__img" src="assets/images/image/ssl-mobile.png" alt="">
+
+    </div>
+
+
+
+
+  </div>
+</footer>
+
+<div class="copyright">
+  <p>Copyright &copy; 2021 EmediLife Limited - All Rights Reserved</p>
+</div>

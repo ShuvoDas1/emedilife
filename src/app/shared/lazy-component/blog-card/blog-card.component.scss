@@ -1,0 +1,124 @@
+@import'../../../../theme/variables';
+.card {
+    display: block;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+  }
+  
+  .card-img {
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 7px;
+    overflow: hidden;
+    border: 2px solid $color-primary;
+  }
+  
+  .card-img img {
+    display: block;
+    width: 100%;
+    min-height: 180px;
+    max-height: 200px;
+    border-radius: 6px;
+    transition: all 0.3s linear;
+  }
+  
+  .card:hover img {
+    transform: scale(1.05);
+  }
+  
+  .card-title {
+    display: block;
+    margin-bottom: 6px;
+  }
+  
+  .card-title h2 {
+    font-weight: 600;
+    font-style: normal;
+    font-family: $font-en-primary;
+    font-size: 16px;
+    display: block;
+    line-height: 24px;
+    color: #484848;
+  }
+  
+  .card-description {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .card-description p {
+    color: #c0c0c0;
+    font-style: normal;
+    font-family: $font-en-primary;
+    font-size: 13.5px;
+    display: block;
+    line-height: 20px;
+    font-weight: 400;
+  }
+  
+  .card-btn {
+    display: block;
+    width: 100%;
+  }
+  
+  .card-btn a {
+    font-family: $font-en-primary;
+    font-size: 16px;
+    display: block;
+    padding: 6px 0;
+    color: $color-primary;
+    text-transform: capitalize;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: all 0.2s linear;
+  }
+  .card-btn a i{
+    font-size: 13px;
+  }
+  .card-btn a:hover{
+    color: $color-secondary;
+  }
+  .card-btn a:hover i{
+    transform:translateX(6px);
+  }
+  
+
+  @media(max-width:450px){
+    .card-title h2 {
+      font-size: 14px;
+      line-height: 22px;
+    }
+    .card-img img {
+      min-height: 150px;
+      max-height: 170px;
+      border-radius: 6px;
+    }
+    .card-description p {
+      font-size: 12px;
+      line-height: 19px;
+    }
+    .card-btn a {
+      font-size: 14px;
+    }
+    .card-btn a i{
+      font-size: 12px;
+    }
+  }
+
+  
+  @media(max-width:380px){
+    .card-title h2 {
+      font-size: 13px;
+      line-height: 21px;
+    }
+    .card-img img {
+      min-height: 150px;
+      max-height: 170px;
+      border-radius: 6px;
+    }
+    .card-description p {
+      font-size: 11px;
+      line-height: 19px;
+    }
+  }

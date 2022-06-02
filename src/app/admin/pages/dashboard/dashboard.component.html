@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="header">
+    <h2 class="title">Dashboard</h2>
+    <a routerLink="all-card">See all</a>
+  </div>
+
+  <!-- Cards -->
+
+  <app-tiles [counts]="counts"></app-tiles>
+
+  <!-- End Cards -->
+
+  <div class="divider"></div>
+
+  <!-- Charts -->
+
+  <app-info-cards></app-info-cards>
+
+  <!-- End Charts -->
+
+  <div class="divider"></div>
+
+  <!-- Recent Users -->
+
+  <recent-users></recent-users>
+
+  <!-- End Recent Users -->
+
+  <div class="divider"></div>
+
+
+  <!-- Recent Transaction Table -->
+
+  <div class="recent__transaction">
+    <table class="table">
+      <tr>
+        <th>Order Id</th>
+        <th>Date</th>
+        <th>District</th>
+        <th>Order Type</th>
+        <th>Payment Type</th>
+        <th>Payment Status</th>
+        <th>Order Status</th>
+        <th>Total</th>
+
+      </tr>
+      <tr *ngFor="let data of orders">
+        <td>{{data.orderId}}</td>
+        <td>{{data.checkoutDate | date }}</td>
+        <td>{{data.district}}</td>
+        <td>{{data.orderType | orderType}}</td>
+        <td>{{data.paymentMethod}}</td>
+        <td class='due'>{{data.paymentStatus}}</td>
+        <td>{{data.deliveryStatus | orderStatus}}</td>
+        <td>{{data.totalAmountWithDiscount | number : "2.0-0" | currency : "BDT "}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- End Recent Transaction Table -->
+
+  <div class="divider"></div>
+
+</div>

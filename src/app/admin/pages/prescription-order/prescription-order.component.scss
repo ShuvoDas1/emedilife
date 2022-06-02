@@ -1,0 +1,39 @@
+@import "src/theme/exports/table-one";
+
+.header {
+  h2 {
+    text-align: center;
+    font-family: $font-en-primary;
+  }
+}
+
+.pagination-container {
+  text-align: center;
+}
+
+.table-container {
+  .table__data {
+    .delivery__status {
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    .cancel {
+      color: #ad0228;
+    }
+
+    .processing {
+      color: rgb(21, 97, 21);
+    }
+
+    .confirm {
+      color: #00c14c;
+    }
+
+    .delivered,
+    .refund,
+    .shipping {
+      color: #00c14c;
+    }
+  }
+}

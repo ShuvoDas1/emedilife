@@ -1,0 +1,120 @@
+<div class="p-1">
+  <mat-card class="p-0">
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="w-100 p-2 header">
+      <h2 class="pl-1 title-big">Order Details</h2>
+      <button printTitle="Print Invoice" printSectionId="print-invoice" [useExistingCss]="true" ngxPrint
+        mat-raised-button color="primary">Print Invoice
+      </button>
+      <div class="line"></div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr class="table-head">
+            <th scope="col">{{'Name'}}</th>
+            <th scope="col">{{'Image'}}</th>
+            <th scope="col">{{'Category'}}</th>
+            <th scope="col">{{'Brand'}}</th>
+            <th scope="col">{{'Generic'}}</th>
+            <th scope="col">{{'Unit Type'}}</th>
+            <th scope="col">{{'Unit Price'}}</th>
+            <th scope="col">{{'Quantity'}}</th>
+            <th scope="col">{{'Sub Total'}}</th>
+          </tr>
+        </thead> <!-- End Table Head -->
+        <tr *ngFor="let data of order?.orderedItems; let i = index">
+          <td [attr.data-label]="'Name'">{{data.product.productName}}</td>
+          <td [attr.data-label]="'Image'">
+            <img class="img-thumb"
+              [src]="data.product.images && data.product.images.length > 0 ? data.product.images[0] : '/assets/images/placeholder/test.png'"
+              [alt]="data.product.productName">
+          </td>
+          <td [attr.data-label]="'Category'">{{data?.product?.category?.categoryName}}</td>
+          <td [attr.data-label]="'Brand'">{{data?.product?.brand?.brandName}}</td>
+          <td [attr.data-label]="'Generic'">{{data?.product?.generic?.name}}</td>
+          <td [attr.data-label]="'Unit Type'">{{data?.unitType | slice:1}}</td>
+          <td [attr.data-label]="'Unit Price'">{{data?.price}}</td>
+          <td [attr.data-label]="'Quantity'">{{data?.quantity}}</td>
+          <td [attr.data-label]="'Sub Total'">{{data.price * data.quantity | number : "1.2"}} TK.</td>
+
+        </tr><!-- End Table Body -->
+
+      </table>
+    </div>
+
+
+
+    <div class="checkout-summary">
+      <div class='img__section'>
+        <swiper style="--swiper-navigation-color: #fff;--swiper-pagination-color: #fff" [zoom]="true"
+          [navigation]="true" [pagination]="{clickable: true}" class="mySwiper">
+          <ng-template swiperSlide *ngFor="let image of prescriptionImages">
+            <div class="swiper-zoom-container">
+              <img [src]="image" />
+            </div>
+          </ng-template>
+        </swiper>
+      </div>
+      <div class=" summary order__details">
+        <div class="info">
+          <h3>Order Details</h3>
+          <p>OrderId: <span>{{order?.orderId}}</span></p>
+          <p>Date: <span>{{order?.checkoutDate | date}}</span></p>
+          <p>order Type: <span>{{order?.orderType | orderType}}</span></p>
+          <p>Payment Type: <span>{{order?.paymentMethod}}</span></p>
+          <p>Payment Status: <span>{{order?.paymentStatus}}</span></p>
+          <p>Delivery Status: <span>{{order?.deliveryStatus | orderStatus}}</span></p>
+        </div>
+      </div>
+
+      <div class="delivery__details summary">
+        <div class="info">
+          <h3>Delivery Info</h3>
+          <p>Name: <span>{{order?.name}}</span></p>
+          <p>Phone No: <span>{{order?.phoneNo}}</span></p>
+          <p>Email: <span>{{order?.email ? order.email : 'N/A'}}</span></p>
+          <p>District: <span>{{order?.district ? order?.district : 'N/A'}}</span></p>
+          <p>Area: <span>{{order?.area ? order?.area : 'N/A'}}</span></p>
+          <p>Delivery Address: <span>{{order?.shippingAddress}}</span></p>
+        </div>
+      </div>
+
+      <div class="checkout__details summary">
+        <div class="title">
+          <h3>Checkout Summary</h3>
+        </div>
+
+        <ul class="payable-total">
+          <li>
+            <span>Subtotal</span>
+            <span>{{order?.subTotal | number : "2.2"}} TK.</span>
+          </li>
+          <li>
+            <span>Delivery</span>
+            <span>{{order?.shippingFee  > 0 ? (order?.shippingFee | number : "1.2" | currency : " TK")   :  "Free"}}
+            </span>
+          </li>
+          <li *ngIf="order?.couponId">
+            <span>Coupon Discount</span>
+            <span>-{{order?.couponValue | number : '2.2': 'bn'}} TK.</span>
+          </li>
+          <li>
+            <span>Total</span>
+            <span>{{order?.subTotal  + order?.shippingFee | number : '1.0-0'}} TK.</span>
+          </li>
+          <!-- <li>
+            <span>Payable Total</span>
+            <span>{{order?.totalAmountWithDiscount | number : '1.0-0'}} TK.</span>
+          </li> -->
+        </ul>
+      </div>
+
+
+    </div> <!-- END RIGHT CHECKOUT VIEW -->
+
+
+  </mat-card>
+</div>
+
+<app-print-invoice style="display: none" id="print-invoice" [order]="order"></app-print-invoice>

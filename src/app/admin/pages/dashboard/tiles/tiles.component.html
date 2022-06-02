@@ -1,0 +1,118 @@
+<!-- <div class="container-grid">
+  <div>
+    <mat-card class="gradient-green tile p-1">
+      <mat-icon>monetization_on</mat-icon>
+      <h2>$33500</h2>
+      <p>profit</p>
+    </mat-card>
+  </div>
+  <div>
+    <mat-card class="gradient-red tile p-1">
+      <mat-icon>thumb_up_alt</mat-icon>
+      <h2>5300</h2>
+      <p>likes</p>
+    </mat-card>
+  </div>
+  <div>
+    <mat-card class="gradient-orange tile p-1">
+      <mat-icon>group</mat-icon>
+      <h2>14280</h2>
+      <p>users</p>
+    </mat-card>
+  </div>
+  <div>
+    <mat-card class="gradient-pink tile p-1">
+      <mat-icon>shopping_cart</mat-icon>
+      <h2>7520</h2>
+      <p>orders</p>
+    </mat-card>
+  </div>
+  <div>
+    <mat-card class="gradient-gray tile p-1">
+      <mat-icon>pie_chart</mat-icon>
+      <h2>$2700</h2>
+      <p>tax</p>
+    </mat-card>
+  </div>
+  <div>
+    <mat-card class="gradient-brown tile p-1">
+      <mat-icon>save_alt</mat-icon>
+      <h2>12700</h2>
+      <p>downloads</p>
+    </mat-card>
+  </div>
+</div> -->
+
+
+<div class="summary__wrapper" *ngIf="counts">
+
+  <!-- All Product -->
+
+  <item-card-count title="Total Products" route="/admin/products" [value]="counts.product.allProduct"
+    image="assets/dashboard/product.svg"></item-card-count>
+
+
+
+  <!-- End All Product -->
+
+  <!-- Total Generics -->
+
+
+
+  <item-card-count title="Total Generic" route="/admin/generics" [value]="counts.generic.allGeneric"
+    image="assets/dashboard/generic.svg"></item-card-count>
+  <!-- End Total Generics -->
+
+  <!-- Total Brands -->
+
+  <item-card-count title="Total Brands" route="/admin/brands" [value]="counts.brand.allBrands"
+    image="assets/dashboard/brand.svg"></item-card-count>
+  <!-- End Total Brands -->
+
+  <!-- All Category -->
+
+  <item-card-count title="Total Category" route="/admin/categories" [value]="counts.category.allCategory"
+    image="assets/dashboard/category.svg"></item-card-count>
+
+
+  <!-- End All Category -->
+
+
+
+  <!-- All Orders -->
+
+  <item-card-count title="Total Orders" route="/admin/orders" [value]="counts.orders.allOrder"
+    image="assets/dashboard/order.svg"></item-card-count>
+
+
+
+  <!-- End All Orders -->
+
+  <!-- Pending Orders -->
+
+  <item-card-count title="Total Pending Orders" route="/admin/orders" [value]="counts.orders.allPendingOrder"
+    image="assets/dashboard/order-pending.svg"></item-card-count>
+
+
+
+  <!-- End Pending Orders -->
+
+
+  <!-- Complete Orders -->
+
+  <item-card-count title="Total Complete Orders" route="/admin/orders" [value]="counts.orders.allConfirmOrders"
+    image="assets/dashboard/order-complete.svg"></item-card-count>
+
+
+
+  <!-- End Complete Orders -->
+
+  <!-- Cancelled Orders -->
+
+  <item-card-count title="Total Cancelled Orders" route="/admin/orders" [value]="counts.orders.allCancelOrder"
+    image="assets/dashboard/cancel-order.svg"></item-card-count>
+
+  <!-- End Cancelled Orders -->
+
+
+</div>

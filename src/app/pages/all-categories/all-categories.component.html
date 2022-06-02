@@ -1,0 +1,52 @@
+<!---shop-by-category-area-->
+<section class="shop-category">
+  <div class="container">
+    <!---title-area-->
+    <div class="title-area">
+      <!---title-->
+      <div class="title">
+        <h3>Shop by Category</h3>
+      </div>
+      <!---see all-btn-->
+      <!--      <div class="see-all-btn">-->
+      <!--        <a routerLink="all-categories">See All <i class="fa fa-angle-right"></i></a>-->
+      <!--      </div>-->
+    </div>
+    <!---shop-category-main-->
+    <div class="shop-category-main">
+      <!--shop-category-card-->
+      <div class="shop-category-card"
+        *ngFor="let data of categories | paginate: { itemsPerPage: productsPerPage, currentPage: currentPage, totalItems: totalProducts };"
+        [id]="data?._id">
+        <!---shop-card-img-->
+        <div class="shop-card-img">
+          <a [routerLink]="['/products', 'categories', data._id]">
+            <img checkImageDefault [src]="data?.image" [alt]="data?.categoryName">
+          </a>
+        </div>
+        <!---shop-card-title-->
+        <div class="shop-card-title">
+          <a [routerLink]="['/products', 'categories', data._id]"
+            routerLinkActive="router-link-active">{{data?.categoryName}}</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="pagination-container">
+    <pagination-controls class="product-pagination" [autoHide]="true" [maxSize]="15"
+      (pageChange)="onPageChanged($event)">
+    </pagination-controls>
+  </div> <!-- END PAGINATION -->
+
+
+
+  <!-- LOADING TEMPLATE -->
+  <ngx-spinner style="width: 100vw; height: 100vh" bdColor="rgba(0,0,0,0.25)" size="medium" color="#fff"
+    type="ball-clip-rotate" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
+
+
+</section>

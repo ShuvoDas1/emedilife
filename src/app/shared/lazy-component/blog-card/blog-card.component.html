@@ -1,0 +1,39 @@
+  <!-- card1-->
+  <div class="card" [routerLink]="['/blog/', data?.slug]">
+    <!-- card-img -->
+    <div class="card-img">
+      <img [src]="data.image? data.image : '/assets/images/image/medicine.png'" alt="bussiness-english.jpg">
+    </div>
+    <!---card-title-->
+    <div class="card-title">
+      <h2>{{data.title}}</h2>
+    </div>
+    <!---card-description-->
+    <div class="card-description">
+      <p>{{data.shortDescription}}</p>
+    </div>
+    <!--card-btn-->
+    <div class="card-btn">
+      <a [routerLink]="['/blog/', data?.slug]">Read More <i class="fa fa-arrow-right"></i></a>
+    </div>
+
+  </div><!---card-end -->
+   
+   
+   <!-- <div class="card">
+    <div class="card-img">
+      <img src="../../../../assets/images/image/Covid_collection 8.png">
+    </div>
+    <div class="card-title">
+      <h2>Is India Entering The Stage Of Endemic? What Does It Mean?</h2>
+    </div>
+    <div class="card-description">
+      <p>Due to the combined efforts of the healthcare workers, government functionaries and most importantly the people of </p>
+    </div>
+    <div class="card-btn">
+      <a [routerLink]="['/blog/', data?.slug]">Read More <i class="fa fa-arrow-right"></i></a>
+    </div>
+
+
+
+  </div> -->
